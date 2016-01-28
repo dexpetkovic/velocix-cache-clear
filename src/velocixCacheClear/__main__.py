@@ -9,6 +9,5 @@ import clientHttpsTransport, wpObject, velocixCDN
 if __name__ == '__main__':
     args = sys.argv
     cacheClearProperty = wpObject.wpObject(args[1], args[2])
-    #cacheClearProperty = wpObject.wpObject('WP:XXXXXXXXXXXXXX', "/*")
-    cdn = velocixCDN.velocixCDN()
+    cdn = velocixCDN.velocixCDN(args[3], args[4])
     cdn.clearCache(cacheClearProperty)

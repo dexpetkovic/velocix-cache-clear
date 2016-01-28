@@ -1,25 +1,20 @@
 
 import xmlrpc.client
 import sys
+import str
 import clientHttpsTransport, wpObject
 
 class velocixCDN:
 
-	def __init__(self):
+	def __init__(self, cdnHost, keyfile):
 		self.account = "Account-Name";
-		self.host = "https://console.cdn.yourCDNhost.com/xmlrpc"
-		
+		self.cdnHost = cdnHost
+		self.host = str.join('', 'https://console.cdn.',self.cdnHost,'/xmlrpc')
 		# This keyfile is an OpenSSL file containing both public and private
 		# key in PEM blocks. You need to generate certificate for each
 		# account in Velocix console and make it available to this script
-		if self.account == "account1":
-			keyfile = "user-account1-certificate.pem";
-		elif self.account == "account2":
-			keyfile = "user-account2-certificate.pem"
-		elif self.account == "account3":
-			keyfile = "user-account3-certificate.pem";
-			
-		self.server = xmlrpc.client.ServerProxy( self.host, clientHttpsTransport.ClientHttpsTransport(keyfile, keyfile), verbose=False )
+		self.keyfile = keyfile
+		self.server = xmlrpc.client.ServerProxy( self.host, clientHttpsTransport.ClientHttpsTransport(self.keyfile, self.keyfile), verbose=False )
 	
 	def clearCache(self, obj):
 		try:
