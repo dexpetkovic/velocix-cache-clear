@@ -7,9 +7,8 @@ import clientHttpsTransport, wpObject
 class velocixCDN:
 
 	def __init__(self, cdnHost, keyfile):
-		self.account = "Account-Name";
 		self.cdnHost = cdnHost
-		self.host = str.join('', 'https://console.cdn.',self.cdnHost,'/xmlrpc')
+		self.host = str.join('', (self.cdnHost,'/xmlrpc'))
 		# This keyfile is an OpenSSL file containing both public and private
 		# key in PEM blocks. You need to generate certificate for each
 		# account in Velocix console and make it available to this script
