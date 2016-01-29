@@ -1,7 +1,6 @@
 
 import xmlrpc.client
 import sys
-import str
 import clientHttpsTransport, wpObject
 
 class velocixCDN:
